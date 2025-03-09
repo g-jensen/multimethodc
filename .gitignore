@@ -1,0 +1,6 @@
+.clj-kondo
+.lsp
+.vscode
+cclj-specc
+*.o
+scratch.c
