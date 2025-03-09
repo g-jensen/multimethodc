@@ -2,6 +2,8 @@
 
 ## Adds Clojure-like polymorphic dispatch to C in a single header file.
 
+Just include `headers/multimethod.h` and it works!
+
 ### Example
 ![example.h.png](https://raw.githubusercontent.com/g-jensen/multimethodc/refs/heads/master/resources/example.h.png)
 ![example.c.png](https://raw.githubusercontent.com/g-jensen/multimethodc/refs/heads/master/resources/example.c.png)
