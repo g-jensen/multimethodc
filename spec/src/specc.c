@@ -79,8 +79,12 @@ void static call_flist(__fun_list* head) {
 }
 
 void static free_flist(__fun_list* head) {
-  if (head) {free_flist(head->next);}
-  free(head);
+  __fun_list* current = head;
+  while (current) {
+    __fun_list* temp = current;
+    current = current->next;
+    free(temp);
+  }
 }
 
 int main() {
