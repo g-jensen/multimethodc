@@ -1,22 +1,22 @@
-#include <stdio.h>
+#include <stdlib.h>
 
 #define CONCAT_IMPL( x, y ) x##y
 #define MACRO_CONCAT( x, y ) CONCAT_IMPL( x, y )
 
-#define defmulti(return_type, function_name, param_type, param_name)\
+#define defmulti(return_type, function_name, dispatch_type, param_type, param_name)\
 typedef return_type (*MACRO_CONCAT(__function__, function_name))(param_type param_name); \
 typedef struct MACRO_CONCAT(___fun_node, function_name) MACRO_CONCAT(___fun_node, function_name); \
 struct MACRO_CONCAT(___fun_node, function_name) { \
   MACRO_CONCAT(___fun_node, function_name)* next; \
-  return_type dispatch_value; \
+  dispatch_type dispatch_value; \
   MACRO_CONCAT(__function__, function_name) f; \
 }; \
 extern MACRO_CONCAT(___fun_node, function_name)* function_name ## _head; \
 extern MACRO_CONCAT(___fun_node, function_name)* function_name ## _tail; \
-return_type function_name ## _dispatch_fn (param_type param_name); \
+dispatch_type function_name ## _dispatch_fn (param_type param_name); \
 return_type function_name (param_type param_name);
 
-#define _implmulti(return_type, function_name, default_value, param_type, param_name, compare_expression)\
+#define _implmulti(return_type, function_name, default_value, dispatch_type, param_type, param_name, compare_expression)\
 MACRO_CONCAT(___fun_node, function_name)* function_name ## _head = NULL; \
 MACRO_CONCAT(___fun_node, function_name)* function_name ## _tail = NULL; \
 return_type function_name (param_type param_name) {\
@@ -29,14 +29,14 @@ return_type function_name (param_type param_name) {\
   }\
   return default_value;\
 }\
-return_type function_name ## _dispatch_fn (param_type param_name)
+dispatch_type function_name ## _dispatch_fn (param_type param_name)
 
-#define implmulti(return_type, function_name, default_value, param_type, param_name)\
-_implmulti(return_type, function_name, default_value, param_type, param_name, \
+#define implmulti(return_type, function_name, default_value, dispatch_type, param_type, param_name)\
+_implmulti(return_type, function_name, default_value, dispatch_type, param_type, param_name, \
   function_name ## _dispatch_fn (param_name) == current->dispatch_value)
 
-#define implmulti_cmp(return_type, function_name, compare_fn, default_value, param_type, param_name)\
-_implmulti(return_type, function_name, default_value, param_type, param_name, \
+#define implmulti_cmp(return_type, function_name, compare_fn, default_value, dispatch_type, param_type, param_name)\
+_implmulti(return_type, function_name, default_value, dispatch_type, param_type, param_name, \
   compare_fn(function_name ## _dispatch_fn (param_name) , current->dispatch_value))
 
 #define __multimethod(return_type, function_name, value, param_type, param_name, counter)\

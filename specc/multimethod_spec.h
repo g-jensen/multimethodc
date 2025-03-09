@@ -5,5 +5,13 @@ struct hi {
   int b;
 };
 
-defmulti(int, a_method, struct hi, a);
-defmulti(struct hi, other_method, int, a);
+defmulti(int, a_method, int, struct hi, a);
+defmulti(struct hi, other_method, struct hi, int, a);
+
+typedef enum Animal {
+  Dog,
+  Cat,
+  Bird
+} Animal;
+
+defmulti(char*, get_noise, Animal, Animal, animal);

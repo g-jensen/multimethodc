@@ -14,7 +14,7 @@ int compare_fn(struct hi a, struct hi b) {
   return a.a == b.a && a.b == b.b;
 }
 
-implmulti(int, a_method, 0, struct hi, a) {
+implmulti(int, a_method, 0, int, struct hi, a) {
   return a.a+1;
 };
 
@@ -31,7 +31,7 @@ multimethod(int, a_method, 3, struct hi, a) {
 }
 
 struct hi default_hi = (struct hi){.a=0,.b=0};
-implmulti_cmp(struct hi, other_method, compare_fn, default_hi, int, a) {
+implmulti_cmp(struct hi, other_method, compare_fn, default_hi, struct hi, int, a) {
   return (struct hi){.a=a,.b=0};
 };
 
@@ -43,6 +43,22 @@ multimethod(struct hi, other_method, negative_hi, int, a) {
 struct hi positive_hi  = (struct hi){.a=1,.b=0};
 multimethod(struct hi, other_method, positive_hi, int, a) {
   return (struct hi){.a=-1,.b=-1};
+}
+
+implmulti(char*, get_noise, "[Unknown Animal]", Animal, Animal, animal) {
+  return animal;
+};
+
+multimethod(char*, get_noise, Dog, Animal, animal) {
+  return "Bark";
+}
+
+multimethod(char*, get_noise, Cat, Animal, animal) {
+  return "Meow";
+}
+
+multimethod(char*, get_noise, Bird, Animal, animal) {
+  return "Chirp";
 }
 
 module(multimethod_spec, {  
@@ -80,6 +96,24 @@ module(multimethod_spec, {
     it("calls a second implemented method of second multimethod", {
       the = (struct hi){.a=-1,.b=-1};
       should_hi_eq(the,other_method(1));
+    });
+  });
+
+  context("animal example", {
+    it("calls default method", {
+      should_str_eq("[Unknown Animal]",get_noise(100));
+    });
+
+    it("calls dog noise", {
+      should_str_eq("Bark",get_noise(Dog));
+    });
+
+    it("calls cat noise", {
+      should_str_eq("Meow",get_noise(Cat));
+    });
+
+    it("calls bird noise", {
+      should_str_eq("Chirp",get_noise(Bird));
     });
   });
 });
