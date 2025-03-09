@@ -1,6 +1,6 @@
 #include "example.h"
 
-implmulti(char*, get_noise, "[Unknown Animal]", Animal, Animal, animal) {
+implmulti(char*, get_noise, "Unknown Animal", Animal, Animal, animal) {
   return animal;
 };
 
@@ -17,9 +17,9 @@ multimethod(char*, get_noise, Bird, Animal, animal) {
 }
 
 int main() {
-  printf("%s!\n",get_noise(1234));
   printf("%s!\n",get_noise(Dog));
   printf("%s!\n",get_noise(Cat));
   printf("%s!\n",get_noise(Bird));
+  printf("%s!\n",get_noise(Cow));
   free_multimethod(get_noise);
 }

@@ -5,7 +5,8 @@
 typedef enum Animal {
   Dog,
   Cat,
-  Bird
+  Bird,
+  Cow
 } Animal;
 
 defmulti(char*, get_noise, Animal, Animal, animal);

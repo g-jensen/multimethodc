@@ -101,7 +101,7 @@ module(multimethod_spec, {
 
   context("animal example", {
     it("calls default method", {
-      should_str_eq("[Unknown Animal]",get_noise(100));
+      should_str_eq("[Unknown Animal]",get_noise(Cow));
     });
 
     it("calls dog noise", {
