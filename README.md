@@ -18,7 +18,7 @@ Unknown Animal!
 
 ### Usage
 
-multimethodc only supports functions with a single parameter.
+multimethodc only supports creating functions with a single parameter.
 
 - `defmulti(return_type, function_name, dispatch_type, param_type, param_name)` 
   - Put in header file to define a multimethod.
