@@ -116,4 +116,9 @@ module(multimethod_spec, {
       should_str_eq("Chirp",get_noise(Bird));
     });
   });
+  
+  free_multimethod(a_method);
+  free_multimethod(other_method);
+  free_multimethod(get_noise);
+
 });

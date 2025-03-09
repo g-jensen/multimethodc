@@ -60,3 +60,13 @@ static void __attribute__((constructor)) MACRO_CONCAT (__construct_, MACRO_CONCA
   
 #define multimethod(return_type, function_name, value, param_type, param_name)\
 __multimethod(return_type, function_name, value, param_type, param_name, __COUNTER__)
+
+#define free_multimethod(function_name)\
+{\
+  MACRO_CONCAT(___fun_node, function_name) *current = function_name ## _head; \
+  while (current) { \
+    MACRO_CONCAT(___fun_node, function_name) *temp = current; \
+    current = current->next; \
+    free(temp); \
+  } \
+}

@@ -21,4 +21,5 @@ int main() {
   printf("%s!\n",get_noise(Dog));
   printf("%s!\n",get_noise(Cat));
   printf("%s!\n",get_noise(Bird));
+  free_multimethod(get_noise);
 }
