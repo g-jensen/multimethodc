@@ -17,7 +17,7 @@ compile-spec:
 	$(CC) -c $(SPEC_FILES)
 
 compile-main:
-	$(CC) -c main.c
+	$(CC) -c example.c
 
 clean:
 	rm -f *.o

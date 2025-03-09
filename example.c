@@ -1,4 +1,4 @@
-#include "main.h"
+#include "example.h"
 
 implmulti(char*, get_noise, "[Unknown Animal]", Animal, Animal, animal) {
   return animal;
