@@ -1,6 +1,6 @@
 CC = gcc
 SRC = src
-SPEC = specc
+SPEC = spec
 SPEC_FILES != find $(SPEC) -name '*.c'
 
 main: compile-main
@@ -10,8 +10,8 @@ spec-auto:
 	find . -name '*.[ch]' | entr make spec
 
 spec: compile-spec
-	$(CC) *.o -o cclj-specc
-	./cclj-specc
+	$(CC) *.o -o specc
+	./specc
 
 compile-spec:
 	$(CC) -c $(SPEC_FILES)
