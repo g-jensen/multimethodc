@@ -4,3 +4,5 @@
 cclj-specc
 *.o
 scratch.c
+multimethodc
+a.out
