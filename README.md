@@ -33,7 +33,7 @@ multimethodc only supports functions with a single parameter.
   - `default_value` is returned if no multimethod is found
 
 - `implmulti_cmp(return_type, function_name, compare_fn, default_value, dispatch_type, param_type, param_name)`
-  - same as `implmulti` but with a custom `compare_fn` that is used to compare the output of the dispatch function to each multimethod value.
+  - same as `implmulti` but with a custom `compare_fn` that is used to compare the output of the dispatch function to each multimethod value. By default (like in `implmulti`), `==` is used to compare.
 
 - `multimethod(return_type, function_name, value, param_type, param_name)`
   - implement a dispatch endpoint (see example for syntax).
