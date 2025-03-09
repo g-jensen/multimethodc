@@ -21,5 +21,5 @@ int main() {
   printf("%s!\n",get_noise(Cat));
   printf("%s!\n",get_noise(Bird));
   printf("%s!\n",get_noise(Cow));
-  free_multimethod(get_noise);
+  free_multimethod(get_noise); // freeing isn't necessary, but if you want to for some reason.
 }
